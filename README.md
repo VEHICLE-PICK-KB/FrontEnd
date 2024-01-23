@@ -14,7 +14,8 @@ Järjestelmässä tulee olla tallennettuna:
 -Polttoaineen maksumahdollisuudet: käteinen, mobile pay, tilisiirto ja mobile pay
 -Kirjautuminen järjestelmään esimerkiksi ilmailuliiton jäsennumerolla.
 
-
+Kehityksessä käytettävät teknologiat:
+Javascript
 
 
 Kehittäjät:
