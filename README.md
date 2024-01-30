@@ -23,7 +23,11 @@ https://legacy.reactjs.org/versions/
 https://nodejs.org/en
 https://code.visualstudio.com/download
 
-
+Gitin käyttö:
+Tiivis kommunikointi ryhmän jäsenten kesken commiteista ja muokkauksista.
+Pullaus aina ennen oman työn aloittamista, näin vältytään palvelime ja paikallisen koneen välisiltä synkronointivirheiltä.
+Kaikki muutokset dokumentoidaan/julkaistaan githubiin.
+https://hhmoodle.haaga-helia.fi/pluginfile.php/3535460/mod_resource/content/3/Tiimin%20versionhallinta%20Ohjelmistoprojekti%201%20toteutuksella.pdf
 
 
 Kehittäjät:
