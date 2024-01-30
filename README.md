@@ -16,7 +16,7 @@ Järjestelmässä tulee olla tallennettuna:
 
 Kehityksessä käytettävät teknologiat ja työkalut:
 
-Java17, React 18, Node.js 18-20, Native javascript, VSCode.  
+Java17, React 18, Node.js 18-20, Native javascript, VSCode, VScoden lisäosat: ESLint, Liveshare, Live server, Prettier.  
 
 https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html
 https://legacy.reactjs.org/versions/
