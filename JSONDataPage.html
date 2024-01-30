@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Airport Fuel Status</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 5px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Airport Fuel Status</h1>
+    <label for="airportCodeInput">Airport Code:</label>
+    <input type="text" id="airportCodeInput" placeholder="Enter Airport Code" />
+    <button id="searchButton">Search</button>
+    <table id="data-table">
+      <thead>
+        <tr>
+          <th>Airport Code</th>
+          <th>PO User Status</th>
+          <th>Avgas</th>
+          <th>Jet A1</th>
+          <th>Mogas</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        <!-- Data rows will be added here -->
+      </tbody>
+    </table>
+
+    <script>
+      function extractAirportCodeFromURL(url) {
+        // First, remove any query string by splitting by '?' and taking the first part.
+        let basePath = url.split("?")[0];
+
+        // Next, remove any trailing slash.
+        basePath = basePath.replace(/\/$/, "");
+
+        // Now, find the last hyphen '-' in the basePath.
+        // The airport code is assumed to be the part after the last hyphen.
+        const lastHyphenIndex = basePath.lastIndexOf("-");
+
+        // If there is no hyphen, or it's the last character, we cannot extract the code.
+        if (lastHyphenIndex === -1 || lastHyphenIndex === basePath.length - 1) {
+          return ""; // Or return some default/fallback code or throw an error.
+        }
+
+        // Extract the code from after the last hyphen.
+        const airportCode = basePath
+          .substring(lastHyphenIndex + 1)
+          .toUpperCase();
+
+        return airportCode;
+      }
+
+      function createTableRow(data) {
+        const row = document.createElement("tr");
+
+        let cell = document.createElement("td");
+        cell.textContent = data.airportCode;
+        row.appendChild(cell);
+
+        cell = document.createElement("td");
+        cell.textContent = data.pouserStatus;
+        row.appendChild(cell);
+
+        Object.values(data.fuels).forEach((fuel) => {
+          let fuelCell = document.createElement("td");
+          fuelCell.textContent = fuel;
+          row.appendChild(fuelCell);
+        });
+
+        return row;
+      }
+
+      function displayData(data) {
+        const tableBody = document.getElementById("table-body");
+        tableBody.innerHTML = "";
+
+        data.forEach((dataItem) => {
+          tableBody.appendChild(createTableRow(dataItem));
+        });
+      }
+
+      function filterData(data, airportCode) {
+        return data.filter(
+          (item) => item.airportCode.toUpperCase() === airportCode.toUpperCase()
+        );
+      }
+
+      function fetchData(airportCode = "") {
+        fetch("MockUpJSON.json")
+          .then((response) => response.json())
+          .then((data) => {
+            let filteredData = data;
+            if (airportCode) {
+              filteredData = filterData(data, airportCode);
+            }
+            displayData(filteredData);
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+      }
+
+      document.getElementById("searchButton").addEventListener("click", () => {
+        const url = document.getElementById("airportCodeInput").value;
+        const airportCode = extractAirportCodeFromURL(url);
+        fetchData(airportCode);
+      });
+
+      // Initially load all data
+      fetchData();
+    </script>
+  </body>
+</html>
