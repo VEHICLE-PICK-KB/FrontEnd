@@ -14,8 +14,20 @@ Järjestelmässä tulee olla tallennettuna:
 -Polttoaineen maksumahdollisuudet: käteinen, mobile pay, tilisiirto ja mobile pay
 -Kirjautuminen järjestelmään esimerkiksi ilmailuliiton jäsennumerolla.
 
-Kehityksessä käytettävät teknologiat:
-Javascript
+Kehityksessä käytettävät teknologiat ja työkalut:
+
+Java17, React 18, Node.js 18-20, Native javascript, VSCode, VScoden lisäosat: ESLint, Liveshare, Live server, Prettier.  
+
+https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html
+https://legacy.reactjs.org/versions/
+https://nodejs.org/en
+https://code.visualstudio.com/download
+
+Gitin käyttö:
+Tiivis kommunikointi ryhmän jäsenten kesken commiteista ja muokkauksista.
+Pullaus aina ennen oman työn aloittamista, näin vältytään palvelime ja paikallisen koneen välisiltä synkronointivirheiltä.
+Kaikki muutokset dokumentoidaan/julkaistaan githubiin.
+https://hhmoodle.haaga-helia.fi/pluginfile.php/3535460/mod_resource/content/3/Tiimin%20versionhallinta%20Ohjelmistoprojekti%201%20toteutuksella.pdf
 
 
 Kehittäjät:
