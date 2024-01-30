@@ -14,8 +14,16 @@ Järjestelmässä tulee olla tallennettuna:
 -Polttoaineen maksumahdollisuudet: käteinen, mobile pay, tilisiirto ja mobile pay
 -Kirjautuminen järjestelmään esimerkiksi ilmailuliiton jäsennumerolla.
 
-Kehityksessä käytettävät teknologiat:
-Javascript
+Kehityksessä käytettävät teknologiat ja työkalut:
+
+Java17, React 18, Node.js 18-20, Native javascript, VSCode.  
+
+https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html
+https://legacy.reactjs.org/versions/
+https://nodejs.org/en
+https://code.visualstudio.com/download
+
+
 
 
 Kehittäjät:
