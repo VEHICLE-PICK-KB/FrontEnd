@@ -1,0 +1,164 @@
+[
+  {
+    "pouserStatus": "-",
+    "airportCode": "EFHF",
+    "fuels": {
+      "avgas": "NA",
+      "jetA1": "NA",
+      "mogas": "NA"
+    }
+  },
+  {
+    "pouserStatus": "OK",
+    "airportCode": "EFHV",
+    "fuels": {
+      "avgas": "3.472",
+      "jetA1": "1.488",
+      "mogas": "2.480"
+    }
+  },
+  {
+    "pouserStatus": "OK",
+    "airportCode": "EFRY",
+    "fuels": {
+      "avgas": "3.472",
+      "jetA1": "NA",
+      "mogas": "2.480"
+    }
+  },
+  {
+    "pouserStatus": "OK",
+    "airportCode": "EFTU",
+    "fuels": {
+      "avgas": "3.534",
+      "jetA1": "NA",
+      "mogas": "NA"
+    }
+  },
+  {
+    "pouserStatus": "OK",
+    "airportCode": "EFMI",
+    "fuels": {
+      "avgas": "3.534",
+      "jetA1": "1.410",
+      "mogas": "NA"
+    }
+  },
+  {
+    "pouserStatus": "OK",
+    "airportCode": "EFJM",
+    "fuels": {
+      "avgas": "3.534",
+      "jetA1": "NA",
+      "mogas": "NA"
+    }
+  },
+  {
+    "pouserStatus": "OK",
+    "airportCode": "EFSA",
+    "fuels": {
+      "avgas": "3.534",
+      "jetA1": "NA",
+      "mogas": "NA"
+    }
+  },
+  {
+    "pouserStatus": "OK",
+    "airportCode": "EFJY",
+    "fuels": {
+      "avgas": "3.596",
+      "jetA1": "NA",
+      "mogas": "NA"
+    }
+  },
+  {
+    "pouserStatus": "OK",
+    "airportCode": "EFYL",
+    "fuels": {
+      "avgas": "3.596",
+      "jetA1": "NA",
+      "mogas": "NA"
+    }
+  },
+  {
+    "pouserStatus": "OK",
+    "airportCode": "EFPU",
+    "fuels": {
+      "avgas": "3.596",
+      "jetA1": "NA",
+      "mogas": "NA"
+    }
+  },
+  {
+    "pouserStatus": "OK",
+    "airportCode": "EFKS",
+    "fuels": {
+      "avgas": "3.596",
+      "jetA1": "NA",
+      "mogas": "NA"
+    }
+  },
+  {
+    "pouserStatus": "OK",
+    "airportCode": "EFRO",
+    "fuels": {
+      "avgas": "3.658",
+      "jetA1": "NA",
+      "mogas": "NA"
+    }
+  },
+  {
+    "pouserStatus": "Not In Use",
+    "airportCode": "EFSO",
+    "fuels": {
+      "avgas": "NA",
+      "jetA1": "NA",
+      "mogas": "NA"
+    }
+  },
+  {
+    "pouserStatus": "",
+    "airportCode": "",
+    "fuels": {
+      "avgas": "NA",
+      "jetA1": "NA",
+      "mogas": "NA"
+    }
+  },
+  {
+    "pouserStatus": "",
+    "airportCode": "Tulossa / Coming in 2024:",
+    "fuels": {
+      "avgas": "NA",
+      "jetA1": "NA",
+      "mogas": "NA"
+    }
+  },
+  {
+    "pouserStatus": "closed",
+    "airportCode": "EFKU",
+    "fuels": {
+      "avgas": "NA",
+      "jetA1": "NA",
+      "mogas": "NA"
+    }
+  },
+  {
+    "pouserStatus": "closed",
+    "airportCode": "EFKI",
+    "fuels": {
+      "avgas": "NA",
+      "jetA1": "NA",
+      "mogas": "NA"
+    }
+  },
+  {
+    "pouserStatus": "closed",
+    "airportCode": "EFIV",
+    "fuels": {
+      "avgas": "NA",
+      "jetA1": "NA",
+      "mogas": "NA"
+    }
+  }
+]
