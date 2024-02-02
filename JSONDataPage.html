@@ -97,7 +97,7 @@
       }
 
       function fetchData(airportCode = "") {
-        fetch("MockUpJSON.json")
+        fetch("https://jtjuslin.kapsi.fi/kananen/fuelprices.php")
           .then((response) => response.json())
           .then((jsonData) => {
             let data = jsonData.airportList; // Access the airportList from JSON
