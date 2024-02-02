@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <title>EFHV Airport Fuel Status</title>
     <style>
-      /* Your styles here */
+      .status-not-ok {
+        color: red;
+      }
     </style>
   </head>
   <body>
@@ -13,7 +15,7 @@
 
     <script>
       function displayAirportData(airportCode) {
-        fetch("MockUpJson.json")
+        fetch("https://jtjuslin.kapsi.fi/kananen/fuelprices.php")
           .then((response) => response.json())
           .then((jsonData) => {
             let data = jsonData.airportList;
@@ -23,10 +25,14 @@
             );
 
             if (airportData) {
+              let pouserStatusDisplay =
+                airportData.pouserStatus === "OK"
+                  ? airportData.pouserStatus
+                  : `<span class="status-not-ok">${airportData.pouserStatus}</span>`;
               let fuelPrices = airportData.fuelPrices;
               document.getElementById("airport-info").innerHTML = `
                             <strong>Kanair:</strong> 
-                            PO User Status - ${airportData.pouserStatus}, 
+                            Poouser Status - ${pouserStatusDisplay}, 
                             Avgas 100LL - ${fuelPrices["AVGAS 100LL"]}, 
                             Jet A-1 - ${fuelPrices["JET A-1"]}, 
                             Mogas - ${fuelPrices["MOGAS"]}

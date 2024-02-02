@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>EFPU Airport Fuel Status</title>
+    <style>
+      .status-not-ok {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>EFPU Airport Fuel Status</h1>
+    <div id="airport-info">Loading...</div>
+
+    <script>
+      function displayAirportData(airportCode) {
+        fetch("https://jtjuslin.kapsi.fi/kananen/fuelprices.php")
+          .then((response) => response.json())
+          .then((jsonData) => {
+            let data = jsonData.airportList;
+            let airportData = data.find(
+              (item) =>
+                item.airportCode.toUpperCase() === airportCode.toUpperCase()
+            );
+
+            if (airportData) {
+              let pouserStatusDisplay =
+                airportData.pouserStatus === "OK"
+                  ? airportData.pouserStatus
+                  : `<span class="status-not-ok">${airportData.pouserStatus}</span>`;
+              let fuelPrices = airportData.fuelPrices;
+              document.getElementById("airport-info").innerHTML = `
+                            <strong>Kanair:</strong> 
+                            Poouser Status - ${pouserStatusDisplay}, 
+                            Avgas 100LL - ${fuelPrices["AVGAS 100LL"]}, 
+                            Jet A-1 - ${fuelPrices["JET A-1"]}, 
+                            Mogas - ${fuelPrices["MOGAS"]}
+                        `;
+            } else {
+              document.getElementById("airport-info").textContent =
+                "Airport data not found.";
+            }
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+      }
+
+      displayAirportData("EFPU");
+    </script>
+  </body>
+</html>
