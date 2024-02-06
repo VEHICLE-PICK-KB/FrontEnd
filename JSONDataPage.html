@@ -42,84 +42,82 @@
     </table>
 
     <script>
-      function extractAirportCodeFromURL(url) {
-        let basePath = url.split("?")[0];
-        basePath = basePath.replace(/\/$/, "");
-        const lastHyphenIndex = basePath.lastIndexOf("-");
-        if (lastHyphenIndex === -1 || lastHyphenIndex === basePath.length - 1) {
-          return "";
+        function extractAirportCodeFromURL(url) {
+            let basePath = url.split("?")[0];
+            basePath = basePath.replace(/\/$/, "");
+            const lastHyphenIndex = basePath.lastIndexOf("-");
+            if (lastHyphenIndex === -1 || lastHyphenIndex === basePath.length - 1) {
+                return "";
+            }
+            const airportCode = basePath
+                .substring(lastHyphenIndex + 1)
+                .toUpperCase();
+            return airportCode;
         }
-        const airportCode = basePath
-          .substring(lastHyphenIndex + 1)
-          .toUpperCase();
-        return airportCode;
-      }
 
-      function createTableRow(data) {
-        const row = document.createElement("tr");
+        function createTableRow(data) {
+            const row = document.createElement("tr");
 
-        let cell = document.createElement("td");
-        cell.textContent = data.airportCode;
-        row.appendChild(cell);
+            row.appendChild(createCell(data.airportCode));
+            const pouserStatusCell = createCell(data.pouserStatus);
+            if (data.pouserStatus !== "OK") {
+                pouserStatusCell.innerHTML = `<span class="status-not-ok">${data.pouserStatus}</span>`;
+            }
+            row.appendChild(pouserStatusCell);
 
-        cell = document.createElement("td");
-        cell.textContent = data.pouserStatus;
-        row.appendChild(cell);
+            // Dynamically add fuel price cells if not "NA"
+            ["AVGAS 100LL", "JET A-1", "MOGAS"].forEach(fuelType => {
+                const price = data.fuelPrices[fuelType];
+                row.appendChild(createCell(price !== "NA" ? price : ""));
+            });
 
-        // Match the keys from your JSON structure's fuelPrices object
-        cell = document.createElement("td");
-        cell.textContent = data.fuelPrices["AVGAS 100LL"];
-        row.appendChild(cell);
+            return row;
+        }
 
-        cell = document.createElement("td");
-        cell.textContent = data.fuelPrices["JET A-1"];
-        row.appendChild(cell);
+        function createCell(text) {
+            const cell = document.createElement("td");
+            cell.textContent = text;
+            return cell;
+        }
 
-        cell = document.createElement("td");
-        cell.textContent = data.fuelPrices["MOGAS"];
-        row.appendChild(cell);
+        function displayData(data) {
+            const tableBody = document.getElementById("table-body");
+            tableBody.innerHTML = "";
+            data.forEach(dataItem => {
+                tableBody.appendChild(createTableRow(dataItem));
+            });
+        }
 
-        return row;
-      }
+        function filterData(airportList, airportCode) {
+            return airportList.filter(
+                item => item.airportCode.toUpperCase() === airportCode.toUpperCase()
+            );
+        }
 
-      function displayData(data) {
-        const tableBody = document.getElementById("table-body");
-        tableBody.innerHTML = "";
-        data.forEach((dataItem) => {
-          tableBody.appendChild(createTableRow(dataItem));
+        function fetchData(airportCode = "") {
+            fetch("https://jtjuslin.kapsi.fi/kananen/fuelprices.php")
+                .then(response => response.json())
+                .then(jsonData => {
+                    let data = jsonData.airportList; // Access the airportList from JSON
+                    let filteredData = airportCode
+                        ? filterData(data, airportCode)
+                        : data;
+                    displayData(filteredData);
+                })
+                .catch(error => console.error("Error fetching data:", error));
+        }
+
+        document.getElementById("searchButton").addEventListener("click", () => {
+            const input = document.getElementById("airportCodeInput").value;
+            // Determine if input is a URL or an airport code
+            const airportCode = input.includes("/")
+                ? extractAirportCodeFromURL(input)
+                : input.toUpperCase();
+            fetchData(airportCode);
         });
-      }
 
-      function filterData(airportList, airportCode) {
-        return airportList.filter(
-          (item) => item.airportCode.toUpperCase() === airportCode.toUpperCase()
-        );
-      }
-
-      function fetchData(airportCode = "") {
-        fetch("https://jtjuslin.kapsi.fi/kananen/fuelprices.php")
-          .then((response) => response.json())
-          .then((jsonData) => {
-            let data = jsonData.airportList; // Access the airportList from JSON
-            let filteredData = airportCode
-              ? filterData(data, airportCode)
-              : data;
-            displayData(filteredData);
-          })
-          .catch((error) => console.error("Error fetching data:", error));
-      }
-
-      document.getElementById("searchButton").addEventListener("click", () => {
-        const input = document.getElementById("airportCodeInput").value;
-        // Determine if input is a URL or an airport code
-        const airportCode = input.includes("/")
-          ? extractAirportCodeFromURL(input)
-          : input.toUpperCase();
-        fetchData(airportCode);
-      });
-
-      // Initially load all data
-      fetchData();
+        // Initially load all data
+        fetchData();
     </script>
-  </body>
+</body>
 </html>
