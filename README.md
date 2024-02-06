@@ -16,7 +16,7 @@ Järjestelmässä tulee olla tallennettuna:
 
 Kehityksessä käytettävät teknologiat ja työkalut:
 
-Java17, React 18, Node.js 18-20, Native javascript, VSCode, VScoden lisäosat: ESLint, Liveshare, Live server, Prettier.  
+Java OpenJDK 11, React 18, Node.js 18-20, javascript, VSCode, VScoden lisäosat: ESLint, Liveshare, Live server, Prettier.  
 
 https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html
 https://legacy.reactjs.org/versions/
@@ -31,7 +31,7 @@ https://hhmoodle.haaga-helia.fi/pluginfile.php/3535460/mod_resource/content/3/Ti
 
 Tuotannossa olevat ominaisuudet löytyvät osoitteesta:
 lentopaikat.fi 
-Front-end sovellukseen käytettyjen toteutuneiden työtuntien määrä: 20
+Sovellukseen käytettyjen toteutuneiden työtuntien määrä: 20
 
 
 Kehittäjät:
