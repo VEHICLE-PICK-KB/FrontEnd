@@ -2,7 +2,7 @@
 <html lang="fi">
   <head>
     <meta charset="UTF-8" />
-    <title>EFRO Airport Fuel Status</title>
+    <title>EFPU Airport Fuel Status</title>
     <style>
       .status-not-ok {
         color: red;
@@ -13,8 +13,8 @@
     </style>
   </head>
   <body>
-    <h1>EFRO Airport Fuel Status</h1>
-    <div id="airport-efro">Loading...</div>
+    <h1>EFPU Airport Fuel Status</h1>
+    <div id="airport-efpu">Loading...</div>
 
     <script>
       function displayAirportData(airportCode) {
@@ -41,8 +41,8 @@
               document.getElementById(
                 `airport-${airportCode.toLowerCase()}`
               ).innerHTML = `
-                            <strong>Kanair:</strong> Polttoainesaatavuus - ${pouserStatusDisplay} <br>
-                            Hinta: ${fuelPriceInfo}
+                            <strong>Kanair:</strong> Fuel Status - ${pouserStatusDisplay} <br>
+                            Price: ${fuelPriceInfo}
                         `;
             } else {
               document.getElementById(
@@ -53,7 +53,7 @@
           .catch((error) => console.error("Error fetching data:", error));
       }
 
-      displayAirportData("EFRO");
+      displayAirportData("EFPU");
     </script>
   </body>
 </html>

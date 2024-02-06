@@ -2,53 +2,56 @@
 <html lang="fi">
   <head>
     <meta charset="UTF-8" />
-    <title>EFHV Airport Fuel Status</title>
+    <title>EFYL Airport Fuel Status</title>
     <style>
       .status-not-ok {
         color: red;
       }
+      .status-ok {
+        color: rgb(69, 207, 69);
+      }
     </style>
   </head>
   <body>
-    <h1>EFHV Airport Fuel Status</h1>
-    <div id="airport-info">Loading...</div>
+    <h1>EFYL Airport Fuel Status</h1>
+    <div id="airport-efyl">Loading...</div>
 
-  <script>
-  function displayAirportData(airportCode) {
-    fetch("https://jtjuslin.kapsi.fi/kananen/fuelprices.php")
-      .then((response) => response.json())
-      .then((jsonData) => {
-        let data = jsonData.airportList;
-        let airportData = data.find(
-          (item) =>
-            item.airportCode.toUpperCase() === airportCode.toUpperCase()
-        );
+    <script>
+      function displayAirportData(airportCode) {
+        fetch("https://jtjuslin.kapsi.fi/kananen/fuelprices.php")
+          .then((response) => response.json())
+          .then((jsonData) => {
+            let data = jsonData.airportList;
+            let airportData = data.find(
+              (item) =>
+                item.airportCode.toUpperCase() === airportCode.toUpperCase()
+            );
 
-        if (airportData) {
-          let pouserStatusDisplay =
-            airportData.pouserStatus === "OK"
-              ? airportData.pouserStatus
-              : `<span class="status-not-ok">${airportData.pouserStatus}</span>`;
-          let fuelPrices = airportData.fuelPrices;
-          let fuelPriceInfo = Object.entries(fuelPrices).reduce((acc, [fuelType, price]) => {
-            if (price !== "NA") { 
-              acc += `${fuelType} - ${price}, `;
+            if (airportData) {
+              let pouserStatusDisplay =
+                airportData.pouserStatus === "OK"
+                  ? `<span class="status-ok">${airportData.pouserStatus}</span>`
+                  : `<span class="status-not-ok">${airportData.pouserStatus}</span>`;
+              let fuelPrices = airportData.fuelPrices;
+              let fuelPriceInfo = Object.entries(fuelPrices)
+                .filter(([_, price]) => price !== "NA")
+                .map(([fuelType, price]) => `${fuelType}: ${price} €`)
+                .join(", ");
+
+              document.getElementById(
+                `airport-${airportCode.toLowerCase()}`
+              ).innerHTML = `
+                            <strong>Kanair:</strong> Polttoainesaatavuus - ${pouserStatusDisplay} <br>
+                            Hinta: ${fuelPriceInfo}
+                        `;
+            } else {
+              document.getElementById(
+                `airport-${airportCode.toLowerCase()}`
+              ).textContent = "Airport data not found.";
             }
-            return acc;
-          }, '');
-
-          document.getElementById("airport-info").innerHTML = `
-                        <strong>Kanair:</strong> 
-                        Poouser Status - ${pouserStatusDisplay}, 
-                        ${fuelPriceInfo.slice(0, -2)}
-                    `;
-        } else {
-          document.getElementById("airport-info").textContent =
-            "Airport data not found.";
-        }
-      })
-      .catch((error) => console.error("Error fetching data:", error));
-  }
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+      }
 
       displayAirportData("EFYL");
     </script>
