@@ -82,5 +82,3 @@ Komento:
 ```bash
 1,15,30,45 * * * * cd /home/users/jtjuslin/www/kananen/javat/lib/; java ProxyPalvelu > /home/users/jtjuslin/www/kananen/data.json
 ```
-
-
